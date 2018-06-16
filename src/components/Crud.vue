@@ -4,123 +4,96 @@
 </template>
 
 <script>/* eslint-disable */
-export default {
-  name: 'crud',
-  data: {
-    columns: ['Index', 'Last Name', 'First Name', 'Age', 'Job', 'Address', 'Actions '],
-    persons: [{
-      lname: "ADIASSA",
-      fname: "Ethiel",
-      age: 20,
-      job: "Web Developer",
-      address: "Lome-Togo"
-    }, {
-      lname: "ADUFU",
-      fname: "Patrick",
-      age: 20,
-      job: "Banker",
-      address: "Senegal-Dakar"
-    }, {
-      lname: "MOUTON",
-      fname: "John",
-      age: 28,
-      job: "Scientist",
-      address: "New-York/USA"
-    }, {
-      lname: "SMITH",
-      fname: "Luther",
-      age: 18,
-      job: "Pilot",
-      address: "London/GB"
-    }, {
-      lname: "WALTER",
-      fname: "Ramses Peter",
-      age: 38,
-      job: "Doctor",
-      address: "Paris/France"
-    }, {
-      lname: "GEORGES",
-      fname: "Luther",
-      age: 45,
-      job: "Musician",
-      address: "Vienne"
-    }, {
-      lname: "MICHAEL",
-      fname: "Daven",
-      age: 27,
-      job: "Boxer",
-      address: "Pekin/China"
-    }],
-    bin: [],
-    input: {
-      lname: "WADE",
-      fname: "Johnson",
-      age: 38,
-      job: "Comedian",
-      address: "Roma/Italia"
-    },
-    editInput: {
-      lname: "",
-      fname: "",
-      age: 0,
-      job: "",
-      address: ""
-    }
+import '../App.css';
+import Item from './Item';
+import AddEvent from './AddEvent';
+let events = [{
+  name: 'CSS/JS Workshops',
+  description: 'Free Workshops for FrontEnd Developers',
+  organizer: 'SkyGate',
+  location: 'Gliwice',
+  date: '18.05.2018',
+  img: ''
+}, {
+  name: 'React Workshops',
+  description: 'Free Workshops for FrontEnd Developers',
+  organizer: 'SkyGate',
+  location: 'Gliwice',
+  date: '13.06.2018',
+  img: ''
+}];
+localStorage.setItem('events', JSON.stringify(events));
+const Crud = {
+  data() {
+    var props = this.$props;
+    this.__state = {
+      events: JSON.parse(localStorage.getItem('events')),
+      title: 'React Event Organizer'
+    };
+    return this.__state;
   },
-  methods: {
-    //function to add data to table
-    add: function() {
-      this.persons.push({
-        lname: this.input.lname,
-        fname: this.input.fname,
-        age: this.input.age,
-        job: this.input.job,
-        address: this.input.address
-      });
 
-      for (var key in this.input) {
-        this.input[key] = '';
-      }
-      this.persons.sort(ordonner);
-      this.$refs.lname.focus();
+  beforeMount() {
+    let events = this.addEvent();
+    this.events = events;
+  },
+
+  render() {
+    return <div>
+      <h1>Events Manager</h1>
+      <AddEvent onAdd={this.onAdd} />
+      {this.$data.events.map(event => {
+        return <Item key={event.name} {...event} onDelete={this.onDelete} onEditSubmit={this.onEditSubmit} />;
+      })}
+      </div>;
+  },
+
+  methods: {
+    addEvent() {
+      return this.$data.events;
     },
-    //function to handle data edition
-    edit: function(index) {
-      this.editInput = this.persons[index];
-      console.log(this.editInput);
-      this.persons.splice(index, 1);
-    },
-    //function to send data to bin
-    archive: function(index) {
-      this.bin.push(this.persons[index]);
-      this.persons.splice(index, 1);
-      this.bin.sort(ordonner);
-    },
-    //function to restore data
-    restore: function(index) {
-      this.persons.push(this.bin[index]);
-      this.bin.splice(index, 1);
-      this.bin.sort(ordonner);
-    },
-    //function to update data
-    update: function(){
-      // this.persons.push(this.editInput);
-       this.persons.push({
-        lname: this.editInput.lname,
-        fname: this.editInput.fname,
-        age: this.editInput.age,
-        job: this.editInput.job,
-        address: this.editInput.address
+
+    onAdd(name, description, organizer, location, date, img) {
+      let events = this.addEvent();
+      events.push({
+        name,
+        description,
+        organizer,
+        location,
+        date,
+        img
       });
-       for (var key in this.editInput) {
-        this.editInput[key] = '';
-      }
-      this.persons.sort(ordonner);
-    },    
-    deplete: function(index) {
-      this.bin.splice(index, 1);
+      this.events = events;
+    },
+
+    onDelete(name) {
+      let events = this.addEvent();
+      let filtered = events.filter(event => {
+        return event.name !== name;
+      });
+      console.log(filtered);
+      this.events = filtered;
+    },
+
+    onEditSubmit(name, description, organizer, location, date, img) {
+      let events = this.addEvent();
+      events = events.map(event => {
+        if (event.name === name) {
+          event.name = name;
+          event.description = description;
+          event.organizer = organizer;
+          event.location = location;
+          event.date = date;
+          event.img = img;
+        }
+
+        return event;
+      });
+      this.events = events;
     }
+
   }
-}
+};
+export default Crud;
 </script>
 
