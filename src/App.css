@@ -16,18 +16,28 @@
   nav {
     background-color: black;
     color: white;
-    padding: 10px;
+    height: 9.5vh;
+    padding: 1vh;
+    margin-top: -3.5vh;
   }
-  nav>ul>li>a {
+  nav>ul>li>a, footer>a {
       color: white;
+      transition: color 2s;
   }
+  nav>ul>li>a:hover, footer>a:hover {
+    color: yellow;
+    transition: color 2s;
+}
   li {
     border-bottom: 5px solid darkgrey;
     list-style: none;
     color: white;
+    transition: border-bottom 2s;
   }
   li:hover {
-    border-bottom: 5px solid white;
+    border-bottom: 5px solid yellow;
+    color: yellow;
+    transition: border-bottom 2s;
   }
   ul {
     display: flex;
@@ -39,21 +49,30 @@
     text-align: center;
     margin: 0 auto;
     font-size: 1.5rem;
+    
   }
   #about {
-    font-size: 1.5rem;
     text-align: center;
     color: black;
     background-color: gray;
     width: 35vw;
     min-width: 300px;
-    height: calc(100% - 10vh);
+    box-shadow: 10px 10px;
     margin: 20px auto;
     padding: 20px;
+    transition: box-shadow 2s;
   }
-  
+  #about:hover {
+    box-shadow: 10px 10px gold;
+    transition: box-shadow 2s;
+  }
+  .fa {
+    transform: scaleX(1) rotate(0deg);
+    transition: transform 2s;
+  }
   .fa:hover {
     transform: scaleX(-1) rotate(180deg);
+    transition: transform 2s;
   }
   a {
       text-decoration: none;
@@ -73,16 +92,16 @@
   }
   #crud {
     width: 90vw;
-    min-height: 78vh;
+    min-height: 89vh;
     background-color: gray;
-    margin: 10px auto;
+    margin: 1vh auto;
   }
   footer {
     background-color: black;
     color: white;
     width: 100vw;
-    height: 4vh;
+    height: 3vh;
     position: absolute;
     bottom: 0;
-    font-size: .8rem;
+    font-size: 1rem;
   }

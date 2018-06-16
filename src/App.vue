@@ -9,7 +9,7 @@
   </nav>
   <router-view></router-view>
   <footer>
-    Designed & developed by Tomasz Pięta
+    Designed & developed by <a href="mailto:tomaszlukaszpieta@gmail.com?subject=Event Manager">Tomasz Pięta</a>
     </footer>
   </div>
 </template>
