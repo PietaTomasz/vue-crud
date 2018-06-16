@@ -7,6 +7,7 @@
 import '../App.css';
 import Item from './Item';
 import AddEvent from './AddEvent';
+
 let events = [{
   name: 'CSS/JS Workshops',
   description: 'Free Workshops for FrontEnd Developers',
