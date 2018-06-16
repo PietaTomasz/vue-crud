@@ -1,33 +1,34 @@
 <template>
-  <div id="about">
+  <div id="about" onClick={this.loadQuote}>
     <h3>{{ msg }}</h3>
+    <div id="axios"></div>
   </div>
 </template>
 
 <script>/* eslint-disable */
 export default {
   name: 'HelloWorld',
-  data () {
+  
+  data() {
     return {
-      msg: 'Welcome to Events Manager Vue.js App'
+      msg: 'Welcome to Events Manager Vue.js App',
+      // status: 'Simple Random Quote Generator'
+    }
+  },
+  created() {
+    this.loadQuote();
+  },
+  methods: {
+    loadQuote() {
+      axios.get('http://quotesondesign.com/wp-json/posts?filter[orderby]=rand&filter[posts_per_page]=1')
+      .then( (response)=> {
+        this.status = response.data[0].content;
+        document.getElementById('axios').innerHTML = this.status;
+      })
+      .catch( (error)=> {
+        this.status = "Error"
+      } )
     }
   }
 }
 </script>
-
-<style scoped>
-h1, h2 {
-  font-weight: normal;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
-}
-</style>
