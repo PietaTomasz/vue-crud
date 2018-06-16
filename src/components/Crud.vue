@@ -1,6 +1,6 @@
 <template>
   <div id="crud">
-    <iframe id="frame" src="http://localhost:3000" style="" scrolling="auto" sandbox="allow-same-origin allow-scripts allow-popups allow-forms"></iframe>
+    <iframe id="frame" src="https://pietatomasz.github.io/react-crud/" style="" scrolling="auto" sandbox="allow-same-origin allow-scripts allow-popups allow-forms"></iframe>
   </div>
 </template>
 
