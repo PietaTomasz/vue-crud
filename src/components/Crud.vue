@@ -1,10 +1,11 @@
 <template>
   <div id="crud">
-    <iframe src="https://pietatomasz.github.io/react-crud/" style="border: 0; width:80vw; height:80vh;" scrolling="auto" sandbox="allow-same-origin allow-scripts allow-popups allow-forms"></iframe>
+    <iframe id="frame" src="http://localhost:3000" style="" scrolling="auto" sandbox="allow-same-origin allow-scripts allow-popups allow-forms"></iframe>
   </div>
 </template>
 
 <script>/* eslint-disable */
+// https://pietatomasz.github.io/react-crud/
 import '../App.css';
 import Item from './Item';
 import AddEvent from './AddEvent';

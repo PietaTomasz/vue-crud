@@ -48,8 +48,7 @@
     font-family: 'Avenir', Helvetica, Arial, sans-serif;
     text-align: center;
     margin: 0 auto;
-    font-size: 1.5rem;
-    
+    font-size: 1.5rem;    
   }
   #about {
     text-align: center;
@@ -57,6 +56,8 @@
     background-color: gray;
     width: 35vw;
     min-width: 300px;
+    border: 2px solid black;
+    border-radius: 10px;
     box-shadow: 10px 10px;
     margin: 20px auto;
     padding: 20px;
@@ -104,4 +105,16 @@
     position: absolute;
     bottom: 0;
     font-size: 1rem;
+  }
+  iframe {
+    border: 2px solid black;
+    width: 90vw;
+    height: 88vh;
+    box-shadow: 10px 10px black;
+    transition: box-shadow 2s;
+    border-radius: 10px;
+  }
+  iframe:hover {
+    box-shadow: 10px 10px gold;
+    transition: box-shadow 2s;
   }

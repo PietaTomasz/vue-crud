@@ -2,7 +2,8 @@
   "name": "crud",
   "version": "1.0.0",
   "description": "A Vue.js project",
-  "author": "TomaszPieta <tomaszlukaszpieta@gmail.com>",
+  "author": "TomaszPieta <tomaszlukaszpieta@gmail.com>",  
+  "homepage": "https://pietatomasz.github.io/vue-crud/",
   "private": true,
   "scripts": {
     "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
